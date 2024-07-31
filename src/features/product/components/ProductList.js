@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { increment, incrementAsync, selectCount } from "../productSlice";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import { ChevronLeftIcon, ChevronRightIcon, StarIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import {
   ChevronDownIcon,
@@ -63,38 +63,6 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const oldproducts = [
-  {
-    id: 1,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 2,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 3,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-];
 
 let product = [
   {
@@ -2013,8 +1981,8 @@ export default function ProductList() {
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                       {product.map((product) => (
                         <Link to="/product-detail">
-                          <div key={product.id} className="group relative">
-                            <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                          <div key={product.id} className="group relative border-solid border-2 p-2 border-gray-200">
+                            <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
                               <img
                                 src={product.thumbnail}
                                 alt={product.title}
@@ -2032,13 +2000,19 @@ export default function ProductList() {
                                     {product.title}
                                   </a>
                                 </h3>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  {product.color}
+                                <p className="mt-1 text-sm text-gray-500 ">
+                                  <StarIcon className="w-6 h-6 inline"></StarIcon>
+                                  <span className="align-bottom">{product.rating}</span>
                                 </p>
                               </div>
-                              <p className="text-sm font-medium text-gray-900">
-                                {product.price}
+                            <div>
+                              <p className="text-sm block font-medium text-gray-900">
+                                ${Math.round(product.price*(1-product.discountPercentage/100))}
                               </p>
+                            <p className="text-sm block line-through font-medium text-gray-400">
+                                ${product.price}
+                              </p>
+                            </div>
                             </div>
                           </div>
                         </Link>
