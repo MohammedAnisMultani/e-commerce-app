@@ -21,3 +21,7 @@ facing issue data from server is not able to fetch (time 1:31)(solved)
 The are extracting things with some extention to but into filters but i am doing it manually (1:36)
 
 
+extracted 100 products by writing limit 100
+https://dummyjson.com/products?limit=100
+
+
